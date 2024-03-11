@@ -17,7 +17,7 @@ For an initial phase of the project, there are two main tasks:
 1. Create the HotelLegs provider integration.
 
 ## Architecture overview
-![alt text](images/Moonhotels_HUB_arquitecture.png)
+Inside of the test zip: images/Moonhotels_HUB_arquitecture.png
 
 ## HUB Search format
 Request:
