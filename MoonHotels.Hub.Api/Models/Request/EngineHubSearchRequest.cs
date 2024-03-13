@@ -4,11 +4,10 @@ namespace MoonHotels.Hub.Api.Models.Request
 {
     public class EngineHubSearchRequest
     {
-        [JsonConstructor]
         public EngineHubSearchRequest(
             int hotelId,
-            string checkIn,
-            string checkOut,
+            DateTime checkIn,
+            DateTime checkOut,
             int numberOfGuests,
             int numberOfRooms,
             string currency
@@ -23,8 +22,8 @@ namespace MoonHotels.Hub.Api.Models.Request
         }
 
         public int HotelId { get; }
-        public string CheckIn { get; }
-        public string CheckOut { get; }
+        public DateTime CheckIn { get; }
+        public DateTime CheckOut { get; }
         public int NumberOfGuests { get; }
         public int NumberOfRooms { get; }
         public string Currency { get; }

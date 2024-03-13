@@ -17,6 +17,37 @@ namespace MoonHotels.Hub.Api.Controllers
             _hubContext = hubContext;
         }
 
+        /// <summary>
+        /// Starts a search process using the engine hub based on the provided search request.
+        /// </summary>
+        /// <param name="request">The search request containing parameters for the search.</param>
+        /// <returns>An asynchronous task representing the HTTP action result with a message indicating the search has started.</returns>
+        /// <remarks>
+        /// Example requests:
+        ///
+        ///     GOOD:
+        ///
+        ///     {
+        ///       "hotelId": 1,
+        ///       "checkIn": "2024-03-12",
+        ///       "checkOut": "2024-03-15",
+        ///       "numberOfGuests": 5,
+        ///       "numberOfRooms": 3,
+        ///       "currency": "EUR"
+        ///     }
+        ///
+        ///     WRONG:
+        ///
+        ///     {
+        ///      "hotelId": 1,
+        ///      "checkIn": "1",
+        ///      "checkOut": "1",
+        ///      "numberOfGuests": -5,
+        ///      "numberOfRooms": -43,
+        ///      "currency": "otro valor"
+        ///     }.
+        ///
+        /// </remarks>
         [HttpPost]
         [Route("start")]
         public async Task<ActionResult<string>> StartSearch([FromBody] EngineHubSearchRequest request)

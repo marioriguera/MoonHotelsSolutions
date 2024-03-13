@@ -1,3 +1,4 @@
+using MoonHotels.Hub.Api.Config;
 using MoonHotels.Hub.Api.Hub;
 
 namespace MoonHotels.Hub.Api
@@ -14,6 +15,7 @@ namespace MoonHotels.Hub.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.ConfigureSwaggerGen();
 
             builder.Services.AddSignalR();
 
