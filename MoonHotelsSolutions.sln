@@ -5,9 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoonHotels.Hub", "MoonHotels.Hub", "{AD6C76D0-7239-432D-B91B-B3E9A8649F03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonHotels.Hub.Api", "MoonHotels.Hub.Api\MoonHotels.Hub.Api.csproj", "{366831D8-CAF3-4960-BB5D-327C1AFC1FF1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoonHotels.Hub.Services", "MoonHotels.Hub.Services\MoonHotels.Hub.Services.csproj", "{AE5A42B7-6713-404D-9FC4-45A04A96E71E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoonHotels.Hub.Services", "MoonHotels.Hub.Services\MoonHotels.Hub.Services.csproj", "{AE5A42B7-6713-404D-9FC4-45A04A96E71E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoonHotels.Hub.Providers", "MoonHotels.Hub.Providers", "{8D481A56-D8B9-45A5-92D5-AC0AF24ED795}"
 EndProject
@@ -17,17 +15,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TravelDoorX", "TravelDoorX"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spedia", "Spedia", "{5937C8C6-3686-4B3D-B371-4B61C8A0D319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelLegs.Api", "HotelLegs.Api\HotelLegs.Api.csproj", "{09F5FD9F-EED5-4AC4-8F8F-F6E78EBE12E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelLegs.Api", "HotelLegs.Api\HotelLegs.Api.csproj", "{09F5FD9F-EED5-4AC4-8F8F-F6E78EBE12E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelLegs.Services", "HotelLegs.Services\HotelLegs.Services.csproj", "{CFED94BE-657C-4085-9F62-EBA7B81F293E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelLegs.Services", "HotelLegs.Services\HotelLegs.Services.csproj", "{CFED94BE-657C-4085-9F62-EBA7B81F293E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spedia.Api", "Spedia.Api\Spedia.Api.csproj", "{19528FB2-0B95-46E7-BE72-9F2D9C35A630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spedia.Api", "Spedia.Api\Spedia.Api.csproj", "{19528FB2-0B95-46E7-BE72-9F2D9C35A630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spedia.Services", "Spedia.Services\Spedia.Services.csproj", "{5DB74009-04D1-4FC0-9668-FE80B7415493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spedia.Services", "Spedia.Services\Spedia.Services.csproj", "{5DB74009-04D1-4FC0-9668-FE80B7415493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelDoorX.Api", "TravelDoorX.Api\TravelDoorX.Api.csproj", "{C867CAD1-B6AB-4CA9-9F0F-607782D70A56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelDoorX.Api", "TravelDoorX.Api\TravelDoorX.Api.csproj", "{C867CAD1-B6AB-4CA9-9F0F-607782D70A56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelDoorX.Services", "TravelDoorX.Services\TravelDoorX.Services.csproj", "{2B2B40D6-B8C5-4FD7-95FB-574C6F1FD995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelDoorX.Services", "TravelDoorX.Services\TravelDoorX.Services.csproj", "{2B2B40D6-B8C5-4FD7-95FB-574C6F1FD995}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A57FFBD3-2A40-4C6C-BC08-38BB75745D24}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,10 +38,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{366831D8-CAF3-4960-BB5D-327C1AFC1FF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{366831D8-CAF3-4960-BB5D-327C1AFC1FF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{366831D8-CAF3-4960-BB5D-327C1AFC1FF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{366831D8-CAF3-4960-BB5D-327C1AFC1FF1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AE5A42B7-6713-404D-9FC4-45A04A96E71E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AE5A42B7-6713-404D-9FC4-45A04A96E71E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE5A42B7-6713-404D-9FC4-45A04A96E71E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,7 +71,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{366831D8-CAF3-4960-BB5D-327C1AFC1FF1} = {AD6C76D0-7239-432D-B91B-B3E9A8649F03}
 		{AE5A42B7-6713-404D-9FC4-45A04A96E71E} = {AD6C76D0-7239-432D-B91B-B3E9A8649F03}
 		{EDFF048E-4B10-4EEF-94AB-DEFC8E452828} = {8D481A56-D8B9-45A5-92D5-AC0AF24ED795}
 		{C6F0453D-B523-4CD8-9680-C19BF09C7809} = {8D481A56-D8B9-45A5-92D5-AC0AF24ED795}
