@@ -27,5 +27,10 @@ namespace MoonHotels.Hub.Api.Models.Request
         public int NumberOfGuests { get; }
         public int NumberOfRooms { get; }
         public string Currency { get; }
+
+        internal bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

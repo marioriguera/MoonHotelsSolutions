@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using MoonHotels.Hub.Api.Attributes;
 using MoonHotels.Hub.Api.Hub;
 using MoonHotels.Hub.Api.Models.Request;
 using MoonHotels.Hub.Api.Models.Response;
@@ -50,6 +51,7 @@ namespace MoonHotels.Hub.Api.Controllers
         /// </remarks>
         [HttpPost]
         [Route("start")]
+        [ValidateSearchRequest]
         public async Task<ActionResult<string>> StartSearch([FromBody] EngineHubSearchRequest request)
         {
             try
