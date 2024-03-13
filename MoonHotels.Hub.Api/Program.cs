@@ -9,34 +9,56 @@ namespace MoonHotels.Hub.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            NlogConfigurator.Initialize();
+            NlogConfigurator.AddConsole();
+            NlogConfigurator.AddDebugger();
+            NlogConfigurator.Start();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.ConfigureSwaggerGen();
-
-            builder.Services.AddSignalR();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            try
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                // Apply configs
+                NlogConfigurator.ApplyConfigurationToLogs();
+
+                // Add services to the container.
+
+                builder.Services.AddControllers();
+                // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+                builder.Services.AddEndpointsApiExplorer();
+                builder.Services.AddSwaggerGen();
+                builder.Services.ConfigureSwaggerGen();
+
+                builder.Services.AddSignalR();
+
+                var app = builder.Build();
+
+                // Configure the HTTP request pipeline.
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI();
+                }
+
+                app.UseHttpsRedirection();
+                app.MapHub<MoonHotelsHub>("search-hub");
+
+                app.UseAuthorization();
+
+
+                app.MapControllers();
+
+
+                ApiConfigurationService.Current.Logger.Fatal($"The API will start.");
+                app.Run();
             }
-
-            app.UseHttpsRedirection();
-            app.MapHub<MoonHotelsHub>("search-hub");
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+            catch (Exception ex)
+            {
+                // NLog: catch setup errors
+                ApiConfigurationService.Current.Logger.Error(ex, "Stopped program because of exception");
+            }
+            finally
+            {
+                NLog.LogManager.Shutdown();
+            }
         }
     }
 }
