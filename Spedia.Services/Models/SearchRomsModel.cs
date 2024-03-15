@@ -28,6 +28,12 @@ namespace Spedia.Services.Models
         public int Rooms { get; set; }
 
         /// <inheritdoc/>
-        public int Currency { get; set; }
+        public bool HasWifi { get; set; }
+
+        /// <inheritdoc/>
+        public bool HasDinner { get; set; }
+
+        /// <inheritdoc/>
+        public CurrencyType Currency { get; set; }
     }
 }

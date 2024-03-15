@@ -31,8 +31,18 @@
         int Rooms { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the number of rooms.
+        /// </summary>
+        bool HasWifi { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the number of rooms.
+        /// </summary>
+        bool HasDinner { get; set; }
+
+        /// <summary>
         /// Gets or sets the currency.
         /// </summary>
-        int Currency { get; set; }
+        CurrencyType Currency { get; set; }
     }
 }

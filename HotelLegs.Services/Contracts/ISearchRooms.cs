@@ -1,4 +1,5 @@
-﻿using HotelLegs.Services.Models;
+﻿using System.Linq.Expressions;
+using HotelLegs.Services.Models;
 
 namespace HotelLegs.Services.Contracts
 {
@@ -8,10 +9,10 @@ namespace HotelLegs.Services.Contracts
     public interface ISearchRooms
     {
         /// <summary>
-        /// Searches for rooms based on the specified search criteria.
+        /// Searches for rooms based on the specified search model.
         /// </summary>
-        /// <param name="func">A function that creates the search room model.</param>
-        /// <returns>A list of rooms DTOs matching the search criteria.</returns>
-        List<IRooms> Search(Func<ISearchRoomModel> func);
+        /// <param name="searchModel">The search model containing the criteria.</param>
+        /// <returns>A list of rooms matching the search criteria.</returns>
+        Task<IEnumerable<IRoom>> SearchAsync(ISearchRoomModel searchModel);
     }
 }

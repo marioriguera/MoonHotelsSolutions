@@ -39,7 +39,7 @@ namespace MoonHotels.Hub.Api.Config
         #region LogProperties
 
         /// <summary>
-        /// Gets or sets the NLog logger associated with the current class.
+        /// Gets the NLog logger associated with the current class.
         /// </summary>
         public NLog.ILogger Logger { get; private set; } = LogManager.GetCurrentClassLogger();
 

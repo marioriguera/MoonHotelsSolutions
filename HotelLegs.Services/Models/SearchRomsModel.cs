@@ -28,6 +28,6 @@ namespace HotelLegs.Services.Models
         public int Rooms { get; set; }
 
         /// <inheritdoc/>
-        public int Currency { get; set; }
+        public CurrencyType Currency { get; set; }
     }
 }

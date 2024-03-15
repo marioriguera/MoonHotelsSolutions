@@ -31,8 +31,23 @@
         int Rooms { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether if the room has wifi.
+        /// </summary>
+        bool HasWifi { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether if the resaervation includes a dinner.
+        /// </summary>
+        bool HasDinner { get; set; }
+
+        /// <summary>
         /// Gets or sets the currency.
         /// </summary>
-        int Currency { get; set; }
+        CurrencyType Currency { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether ih the hotel has a pool.
+        /// </summary>
+        bool HasPool { get; set; }
     }
 }

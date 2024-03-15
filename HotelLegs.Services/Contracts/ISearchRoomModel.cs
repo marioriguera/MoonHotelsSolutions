@@ -33,6 +33,6 @@
         /// <summary>
         /// Gets or sets the currency.
         /// </summary>
-        int Currency { get; set; }
+        CurrencyType Currency { get; set; }
     }
 }

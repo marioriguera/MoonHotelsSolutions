@@ -3,8 +3,15 @@ using MoonHotels.Hub.Api.Hub;
 
 namespace MoonHotels.Hub.Api
 {
+    /// <summary>
+    /// Represents the entry point of the application.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// The entry point of the application.
+        /// </summary>
+        /// <param name="args">The command-line arguments.</param>
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -19,9 +26,8 @@ namespace MoonHotels.Hub.Api
                 // Apply configs
                 NlogConfigurator.ApplyConfigurationToLogs();
 
-                // Add services to the container.
-
                 builder.Services.AddControllers();
+
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen();
@@ -43,9 +49,7 @@ namespace MoonHotels.Hub.Api
 
                 app.UseAuthorization();
 
-
                 app.MapControllers();
-
 
                 ApiConfigurationService.Current.Logger.Fatal($"The API will start.");
                 app.Run();
