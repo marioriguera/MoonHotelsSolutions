@@ -42,18 +42,18 @@ namespace MoonHotels.Hub.Api.Controllers
         ///       "checkOut": "2024-03-15",
         ///       "numberOfGuests": 5,
         ///       "numberOfRooms": 3,
-        ///       "currency": "EUR"
+        ///       "currency": 1
         ///     }
         ///
         ///     WRONG:
         ///
         ///     {
-        ///      "hotelId": 1,
+        ///      "hotelId": -10,
         ///      "checkIn": "1",
         ///      "checkOut": "1",
         ///      "numberOfGuests": -5,
         ///      "numberOfRooms": -43,
-        ///      "currency": "otro valor"
+        ///      "currency": 20
         ///     }.
         ///
         /// </remarks>
@@ -65,7 +65,7 @@ namespace MoonHotels.Hub.Api.Controllers
             try
             {
                 await HubComunicationStepsAsync(request);
-                return Ok($"The search has started.");
+                return Ok($"The search {request.GetHashCode()} has started.");
             }
             catch (Exception ex)
             {
