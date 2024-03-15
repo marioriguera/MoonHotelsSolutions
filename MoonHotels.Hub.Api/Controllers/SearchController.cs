@@ -1,18 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using MoonHotels.Hub.Api.Attributes;
+using MoonHotels.Hub.Api.Config;
 using MoonHotels.Hub.Api.Hub;
 using MoonHotels.Hub.Api.Models.Request;
 using MoonHotels.Hub.Api.Models.Response;
 
 namespace MoonHotels.Hub.Api.Controllers
 {
+    /// <summary>
+    /// Controller for handling search requests.
+    /// </summary>
     [ApiController]
     [Route("api/search")]
     public class SearchController : ControllerBase
     {
         private readonly IHubContext<MoonHotelsHub> _hubContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchController"/> class.
+        /// </summary>
+        /// <param name="hubContext">The hub context for MoonHotels communication.</param>
         public SearchController(IHubContext<MoonHotelsHub> hubContext)
         {
             _hubContext = hubContext;
@@ -61,6 +69,7 @@ namespace MoonHotels.Hub.Api.Controllers
             }
             catch (Exception ex)
             {
+                ApiConfigurationService.Current.Logger.Fatal(ex, $"Unhandle exceptions has ocurred in {nameof(StartSearch)}.");
                 return BadRequest($"Something went wrong");
             }
         }
