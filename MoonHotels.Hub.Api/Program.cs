@@ -26,6 +26,9 @@ namespace MoonHotels.Hub.Api
                 // Apply configs
                 NlogConfigurator.ApplyConfigurationToLogs();
 
+                // Add services to the container.
+                MoonHotels.Services.Dependencies.Register.AddDependencies(builder.Services);
+
                 builder.Services.AddControllers();
 
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

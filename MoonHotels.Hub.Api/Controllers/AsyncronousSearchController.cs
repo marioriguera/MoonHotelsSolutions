@@ -78,13 +78,13 @@ namespace MoonHotels.Hub.Api.Controllers
         {
             await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", $"Atendiendo la request {request.GetHashCode()}.");
 
-            Rate rate = new(1, true, 1);
+            RateResponse rate = new(1, true, 1);
 
-            List<Rate> rates = new();
+            List<RateResponse> rates = new();
             rates.Add(rate);
 
-            Room room = new(1, rates);
-            List<Room> rooms = new();
+            RoomResponse room = new(1, rates);
+            List<RoomResponse> rooms = new();
             rooms.Add(room);
 
             EngineHubSearchResponse response = new(rooms);

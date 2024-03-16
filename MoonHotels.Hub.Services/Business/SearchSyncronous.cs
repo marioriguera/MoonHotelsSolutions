@@ -2,11 +2,15 @@
 
 namespace MoonHotels.Hub.Services.Business
 {
+    /// <summary>
+    /// Represents a synchronous search operation.
+    /// </summary>
     internal class SearchSyncronous : ISearchSyncronous
     {
-        public ICollection<ISearchSyncronous> SearchSync(ISearchRoomModel search)
+        /// <inheritdoc/>
+        public async Task<ICollection<ISearchSyncronous>> SearchSync(ISearchRoomModel search)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

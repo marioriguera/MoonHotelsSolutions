@@ -5,6 +5,7 @@ using MoonHotels.Hub.Api.Config;
 using MoonHotels.Hub.Api.Hub;
 using MoonHotels.Hub.Api.Models.Request;
 using MoonHotels.Hub.Api.Models.Response;
+using MoonHotels.Hub.Services.Contracts;
 
 namespace MoonHotels.Hub.Api.Controllers
 {
@@ -15,15 +16,15 @@ namespace MoonHotels.Hub.Api.Controllers
     [Route("api/sync-search")]
     public class SyncronousSearchController : ControllerBase
     {
-        private readonly IHubContext<MoonHotelsHub> _hubContext;
+        private readonly ISearchSyncronous _searchSyncronous;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SyncronousSearchController"/> class.
         /// </summary>
-        /// <param name="hubContext">The hub context for MoonHotels communication.</param>
-        public SyncronousSearchController(IHubContext<MoonHotelsHub> hubContext)
+        /// <param name="searchSyncronous">The synchronous search service.</param>
+        public SyncronousSearchController(ISearchSyncronous searchSyncronous)
         {
-            _hubContext = hubContext;
+            _searchSyncronous = searchSyncronous;
         }
 
         /// <summary>
@@ -64,6 +65,7 @@ namespace MoonHotels.Hub.Api.Controllers
         {
             try
             {
+                var result = await _searchSyncronous.SearchSync(request);
                 return Ok($"The search {request.GetHashCode()} has started.");
             }
             catch (Exception ex)
