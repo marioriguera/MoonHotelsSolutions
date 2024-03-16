@@ -9,7 +9,7 @@ namespace MoonHotels.Hub.Services.Models.Suppliers.TravelDoorX
 {
     internal class TravelDoorXResponse : ResponseBase
     {
-        public TravelDoorXResponse(int id) : base(id)
+        public TravelDoorXResponse(int id) : base(id, "https://localhost:44340/api/search/rooms")
         {
         }
 

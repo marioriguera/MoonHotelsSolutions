@@ -44,6 +44,9 @@ namespace MoonHotels.Hub.Api.Models.Request
         /// <inheritdoc/>
         public CurrencyType Currency { get; }
 
+        /// <inheritdoc/>
+        public int IdSearch => this.GetHashCode();
+
         /// <summary>
         /// Gets a list of invalidations for the search request.
         /// </summary>

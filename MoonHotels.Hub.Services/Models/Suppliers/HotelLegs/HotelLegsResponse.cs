@@ -9,7 +9,7 @@ namespace MoonHotels.Hub.Services.Models.Suppliers.HotelLegs
 {
     internal class HotelLegsResponse : ResponseBase
     {
-        public HotelLegsResponse(int id) : base(id)
+        public HotelLegsResponse(int id) : base(id, "https://localhost:44372/api/search/rooms")
         {
         }
 

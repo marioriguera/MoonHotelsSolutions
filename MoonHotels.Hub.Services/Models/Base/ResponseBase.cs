@@ -8,6 +8,6 @@ namespace MoonHotels.Hub.Services.Models.Base
 {
     internal abstract class ResponseBase : Base
     {
-        protected ResponseBase(int id) : base(id) { }
+        protected ResponseBase(int id, string url) : base(id, url) { }
     }
 }

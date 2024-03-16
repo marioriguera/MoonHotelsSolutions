@@ -66,7 +66,7 @@ namespace MoonHotels.Hub.Api.Controllers
             try
             {
                 var result = await _searchSyncronous.SearchSync(request);
-                return Ok($"The search {request.GetHashCode()} has started.");
+                return Ok($"The search {request.IdSearch} has started.");
             }
             catch (Exception ex)
             {

@@ -67,33 +67,38 @@ namespace MoonHotels.Hub.Services.Contracts
     public interface ISearchRoomModel
     {
         /// <summary>
+        /// Gets id search. Its the hash code of the hub request.
+        /// </summary>
+        int IdSearch { get; }
+
+        /// <summary>
         /// Gets the ID of the hotel.
         /// </summary>
-        public int HotelId { get; }
+        int HotelId { get; }
 
         /// <summary>
         /// Gets the check-in date.
         /// </summary>
-        public DateTime CheckIn { get; }
+        DateTime CheckIn { get; }
 
         /// <summary>
         /// Gets the check-out date.
         /// </summary>
-        public DateTime CheckOut { get; }
+        DateTime CheckOut { get; }
 
         /// <summary>
         /// Gets the number of guests.
         /// </summary>
-        public int NumberOfGuests { get; }
+        int NumberOfGuests { get; }
 
         /// <summary>
         /// Gets the number of rooms.
         /// </summary>
-        public int NumberOfRooms { get; }
+        int NumberOfRooms { get; }
 
         /// <summary>
         /// Gets the currency.
         /// </summary>
-        public CurrencyType Currency { get; }
+        CurrencyType Currency { get; }
     }
 }

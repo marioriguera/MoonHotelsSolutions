@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoonHotels.Hub.Services.Models.Base
+﻿namespace MoonHotels.Hub.Services.Models.Base
 {
     internal abstract class RequestBase : Base
     {
-        protected RequestBase(int id) : base(id) { }
+        protected RequestBase(int id, string url)
+            : base(id, url)
+        {
+        }
+
+        /// <summary>
+        /// Converts the object to a JSON string.
+        /// </summary>
+        /// <returns>A JSON representation of the object.</returns>
+        public virtual string ToJson()
+        {
+            return string.Empty;
+        }
     }
 }
