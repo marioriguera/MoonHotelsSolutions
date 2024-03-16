@@ -64,46 +64,46 @@
         /// <summary>
         /// Gets or sets the room ID.
         /// </summary>
-        public int Room { get; set; }
+        int Room { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the hotel.
         /// </summary>
-        public int Hotel { get; set; }
+        int Hotel { get; set; }
 
         /// <summary>
         /// Gets or sets the check-in date.
         /// </summary>
-        public DateTime CheckInDate { get; set; }
+        DateTime CheckInDate { get; set; }
 
         /// <summary>
         /// Gets or sets the number of nights for the stay.
         /// </summary>
-        public int NumberOfNights { get; set; }
+        int NumberOfNights { get; set; }
 
         /// <summary>
         /// Gets or sets the number of rooms.
         /// </summary>
-        public int Rooms { get; set; }
+        int Rooms { get; set; }
 
         /// <summary>
         /// Gets or sets the currency.
         /// </summary>
-        public CurrencyType Currency { get; set; }
+        CurrencyType Currency { get; set; }
 
         /// <summary>
         /// Gets or sets the meal option.
         /// </summary>
-        public int Meal { get; set; }
+        int Meal { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the room reservation can be canceled.
         /// </summary>
-        public bool CanCancel { get; set; }
+        bool CanCancel { get; set; }
 
         /// <summary>
         /// Gets or sets the price of the room.
         /// </summary>
-        public decimal Price { get; set; }
+        decimal Price { get; set; }
     }
 }

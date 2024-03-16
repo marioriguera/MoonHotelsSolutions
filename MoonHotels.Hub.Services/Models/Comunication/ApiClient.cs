@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MoonHotels.Hub.Services.Models.Comunication
 {
@@ -77,6 +74,19 @@ namespace MoonHotels.Hub.Services.Models.Comunication
             }
         }
 
+        /// <summary>
+        /// Deserializes the response into the specified type.
+        /// </summary>
+        /// <typeparam name="T">The type of the response to deserialize.</typeparam>
+        /// <returns>The deserialized response object of type <typeparamref name="T"/>.</returns>
+        public T DeserializeResponse<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(Response) ?? throw new Exception($"Cant deserialize {nameof(Response)} in function {nameof(DeserializeResponse)}.");
+        }
+
+        /// <summary>
+        /// Dispose httpClient field.
+        /// </summary>
         public void Dispose()
         {
             _httpClient?.Dispose();

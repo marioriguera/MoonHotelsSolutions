@@ -7,6 +7,13 @@ namespace MoonHotels.Hub.Services.Models
     /// </summary>
     internal class Rate : IRate
     {
+        public Rate(int mealPlanId, bool isCancellable, decimal price)
+        {
+            MealPlanId = mealPlanId;
+            IsCancellable = isCancellable;
+            Price = price;
+        }
+
         /// <inheritdoc/>
         public int MealPlanId { get; set; }
 
@@ -14,6 +21,6 @@ namespace MoonHotels.Hub.Services.Models
         public bool IsCancellable { get; set; }
 
         /// <inheritdoc/>
-        public double Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

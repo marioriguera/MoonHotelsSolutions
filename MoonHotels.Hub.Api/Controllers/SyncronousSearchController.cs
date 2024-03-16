@@ -61,12 +61,11 @@ namespace MoonHotels.Hub.Api.Controllers
         [HttpPost]
         [Route("start")]
         [ValidateSearchRequest]
-        public async Task<ActionResult<string>> StartSearch([FromBody] EngineHubSearchRequest request)
+        public async Task<ActionResult<EngineHubSearchResponse>> StartSearch([FromBody] EngineHubSearchRequest request)
         {
             try
             {
-                var result = await _searchSyncronous.SearchSync(request);
-                return Ok($"The search {request.IdSearch} has started.");
+                return Ok(await _searchSyncronous.SearchSync(request));
             }
             catch (Exception ex)
             {

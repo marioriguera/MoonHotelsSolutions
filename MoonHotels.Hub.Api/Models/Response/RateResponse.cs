@@ -14,7 +14,7 @@ namespace MoonHotels.Hub.Api.Models.Response
         /// <param name="mealPlanId">The ID of the meal plan.</param>
         /// <param name="isCancellable">A value indicating whether the rate is cancellable.</param>
         /// <param name="price">The price of the rate.</param>
-        public RateResponse(int mealPlanId, bool isCancellable, double price)
+        public RateResponse(int mealPlanId, bool isCancellable, decimal price)
         {
             MealPlanId = mealPlanId;
             IsCancellable = isCancellable;
@@ -28,6 +28,6 @@ namespace MoonHotels.Hub.Api.Models.Response
         public bool IsCancellable { get; set; }
 
         /// <inheritdoc/>
-        public double Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

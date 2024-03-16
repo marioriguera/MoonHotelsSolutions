@@ -7,6 +7,11 @@ namespace MoonHotels.Hub.Services.Models
     /// </summary>
     internal class EngineHub : IEngineHub
     {
+        public EngineHub(IEnumerable<IRoom> rooms)
+        {
+            Rooms = rooms;
+        }
+
         /// <inheritdoc/>
         public IEnumerable<IRoom> Rooms { get; } = new List<Room>();
     }
