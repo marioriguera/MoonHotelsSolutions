@@ -14,11 +14,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dependencies\" />
-    <Folder Include="Business\" />
-    <Folder Include="Contracts\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

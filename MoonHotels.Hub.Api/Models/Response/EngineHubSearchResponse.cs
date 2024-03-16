@@ -12,7 +12,7 @@ namespace MoonHotels.Hub.Api.Models.Response
         /// </summary>
         /// <param name="rooms">The list of rooms in the response.</param>
         [JsonConstructor]
-        public EngineHubSearchResponse(List<Room> rooms)
+        public EngineHubSearchResponse(IEnumerable<Room> rooms)
         {
             Rooms = rooms;
         }
@@ -21,6 +21,6 @@ namespace MoonHotels.Hub.Api.Models.Response
         /// Gets the list of rooms in the response.
         /// </summary>
         [JsonPropertyName("rooms")]
-        public IReadOnlyList<Room> Rooms { get; }
+        public IEnumerable<Room> Rooms { get; } = new List<Room>();
     }
 }

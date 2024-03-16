@@ -1,65 +1,11 @@
-﻿namespace MoonHotels.Hub.Api.Models.Request
+﻿using MoonHotels.Hub.Services.Contracts;
+
+namespace MoonHotels.Hub.Api.Models.Request
 {
-    /// <summary>
-    /// Represents types of currencies.
-    /// </summary>
-    public enum CurrencyType
-    {
-        /// <summary>
-        /// United States Dollar (USD).
-        /// </summary>
-        USD,
-
-        /// <summary>
-        /// Euro (EUR).
-        /// </summary>
-        EUR,
-
-        /// <summary>
-        /// British Pound Sterling (GBP).
-        /// </summary>
-        GBP,
-
-        /// <summary>
-        /// Japanese Yen (JPY).
-        /// </summary>
-        JPY,
-
-        /// <summary>
-        /// Australian Dollar (AUD).
-        /// </summary>
-        AUD,
-
-        /// <summary>
-        /// Canadian Dollar (CAD).
-        /// </summary>
-        CAD,
-
-        /// <summary>
-        /// Swiss Franc (CHF).
-        /// </summary>
-        CHF,
-
-        /// <summary>
-        /// Chinese Yuan Renminbi (CNY).
-        /// </summary>
-        CNY,
-
-        /// <summary>
-        /// Swedish Krona (SEK).
-        /// </summary>
-        SEK,
-
-        /// <summary>
-        /// New Zealand Dollar (NZD).
-        /// </summary>
-        NZD,
-    }
-
     /// <summary>
     /// Represents a search request for the EngineHub.
     /// </summary>
-    public class EngineHubSearchRequest
+    public class EngineHubSearchRequest : ISearchRoomModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EngineHubSearchRequest"/> class with the specified parameters.
@@ -80,34 +26,22 @@
             Currency = currency;
         }
 
-        /// <summary>
-        /// Gets the ID of the hotel.
-        /// </summary>
+        /// <inheritdoc/>
         public int HotelId { get; }
 
-        /// <summary>
-        /// Gets the check-in date.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime CheckIn { get; }
 
-        /// <summary>
-        /// Gets the check-out date.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime CheckOut { get; }
 
-        /// <summary>
-        /// Gets the number of guests.
-        /// </summary>
+        /// <inheritdoc/>
         public int NumberOfGuests { get; }
 
-        /// <summary>
-        /// Gets the number of rooms.
-        /// </summary>
+        /// <inheritdoc/>
         public int NumberOfRooms { get; }
 
-        /// <summary>
-        /// Gets the currency.
-        /// </summary>
+        /// <inheritdoc/>
         public CurrencyType Currency { get; }
 
         /// <summary>
