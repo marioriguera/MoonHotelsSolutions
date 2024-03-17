@@ -22,7 +22,7 @@ namespace MoonHotels.Hub.Services.Business
         private readonly List<ResponseBase> responses = new();
 
         /// <inheritdoc/>
-        public async Task<IEngineHub> SearchSync(ISearchRoomModel search)
+        public async Task<IEngineHub> SearchSync(ISearchRoomModel search, NLog.ILogger logger)
         {
             // Step 1: update requests to use in http requests.
             UpdateRequests(search);
@@ -31,7 +31,7 @@ namespace MoonHotels.Hub.Services.Business
             UpdateApiClients(search);
 
             // Step 3: do requests.
-            await DoRequestsAsync();
+            await DoRequestsAsync(logger);
 
             // Step 4: take responses
             UpdateResponses();
@@ -42,6 +42,11 @@ namespace MoonHotels.Hub.Services.Business
 
         private EngineHub GroupAllEngineHubs()
         {
+            if (!responses.Any())
+            {
+                return new(Array.Empty<IRoom>());
+            }
+
             var hubs = responses.SelectMany(resp => resp.ToEngineHub().Rooms).ToList();
             var groupedRooms = hubs.GroupBy(room => room.RoomId)
                                            .Select(group => new Room(group.Key, group.SelectMany(room => room.Rates).ToList()))
@@ -54,10 +59,13 @@ namespace MoonHotels.Hub.Services.Business
         /// </summary>
         private void UpdateResponses()
         {
+            if (apiClients.Select(x => x.Response).Where(resp => string.IsNullOrEmpty(resp)).ToList().Count == apiClients.Count) return;
             responses.Clear();
 
             foreach (ApiClient apiClient in apiClients)
             {
+                if (string.IsNullOrEmpty(apiClient.Response)) continue;
+
                 if (apiClient.ApiUrl.Equals(new HotelLegsResponse(-1).Url, StringComparison.Ordinal))
                 {
                     responses.Add(apiClient.DeserializeResponse<HotelLegsResponse>());
@@ -82,17 +90,17 @@ namespace MoonHotels.Hub.Services.Business
         /// Performs asynchronous requests to all API clients.
         /// </summary>
         /// <returns>A task representing the asynchronous operation.</returns>
-        private async Task DoRequestsAsync()
+        private async Task DoRequestsAsync(NLog.ILogger logger)
         {
             // Wait for all tasks to complete using Task.WhenAll
             try
             {
-                await Task.WhenAll(apiClients.Select(apiClient => apiClient.PostDataAsync()));
-                Console.WriteLine("All requests completed successfully.");
+                await Task.WhenAll(apiClients.Select(apiClient => apiClient.PostDataAsync(logger)));
+                logger.Info($"All requests completed successfully in {nameof(DoRequestsAsync)}.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                logger.Fatal(ex, $"An uncontrolled exception has occurred in {nameof(DoRequestsAsync)}, while waiting for all http calls to be made to suppliers to find out about the requested rooms.");
             }
         }
 

@@ -65,11 +65,11 @@ namespace MoonHotels.Hub.Api.Controllers
         {
             try
             {
-                return Ok(await _searchSyncronous.SearchSync(request));
+                return Ok(await _searchSyncronous.SearchSync(request, ApiConfigurationService.Current.Logger));
             }
             catch (Exception ex)
             {
-                ApiConfigurationService.Current.Logger.Fatal(ex, $"Unhandle exceptions has ocurred in {nameof(StartSearch)}.");
+                ApiConfigurationService.Current.Logger.Fatal(ex, $"Unhandle exceptions has ocurred in {nameof(StartSearch)}. Message {ex.Message} .");
                 return BadRequest($"Something went wrong");
             }
         }

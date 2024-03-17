@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Text;
+﻿using System.Text;
+using Newtonsoft.Json;
 
 namespace MoonHotels.Hub.Services.Models.Comunication
 {
@@ -38,10 +38,10 @@ namespace MoonHotels.Hub.Services.Models.Comunication
         public string Response { get; set; } = string.Empty;
 
         /// <summary>
-        /// Sends a POST request to the specified API URL with the provided request body.
+        /// Posts data asynchronously to the API and logs any exceptions.
         /// </summary>
-        /// <returns>The response body received from the API.</returns>
-        public async Task PostDataAsync()
+        /// <param name="logger">The logger instance for logging exceptions.</param>
+        public async Task PostDataAsync(NLog.ILogger logger)
         {
             try
             {
@@ -67,10 +67,11 @@ namespace MoonHotels.Hub.Services.Models.Comunication
                     throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Fatal(ex, $"During the post request with the body {RequestBody} to the url {ApiUrl} an exception has occurred. Message: {ex.Message} .");
+                Response = string.Empty;
                 Dispose();
-                throw;
             }
         }
 

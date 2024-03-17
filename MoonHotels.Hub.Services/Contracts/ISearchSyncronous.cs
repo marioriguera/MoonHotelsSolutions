@@ -11,6 +11,6 @@ namespace MoonHotels.Hub.Services.Contracts
     /// </summary>
     public interface ISearchSyncronous
     {
-        Task<IEngineHub> SearchSync(ISearchRoomModel search);
+        Task<IEngineHub> SearchSync(ISearchRoomModel search, NLog.ILogger logger);
     }
 }
