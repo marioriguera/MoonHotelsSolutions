@@ -40,6 +40,10 @@ namespace MoonHotels.Hub.Services.Business
             return GroupAllEngineHubs();
         }
 
+        /// <summary>
+        /// Groups all the engine hubs' rooms from the responses into a single engine hub.
+        /// </summary>
+        /// <returns>An engine hub containing all the grouped rooms.</returns>
         private EngineHub GroupAllEngineHubs()
         {
             if (!responses.Any())
@@ -66,23 +70,7 @@ namespace MoonHotels.Hub.Services.Business
             {
                 if (string.IsNullOrEmpty(apiClient.Response)) continue;
 
-                if (apiClient.ApiUrl.Equals(new HotelLegsResponse(-1).Url, StringComparison.Ordinal))
-                {
-                    responses.Add(apiClient.DeserializeResponse<HotelLegsResponse>());
-                    continue;
-                }
-
-                if (apiClient.ApiUrl.Equals(new SpediaResponse(-1).Url, StringComparison.Ordinal))
-                {
-                    responses.Add(apiClient.DeserializeResponse<SpediaResponse>());
-                    continue;
-                }
-
-                if (apiClient.ApiUrl.Equals(new TravelDoorXResponse(-1).Url, StringComparison.Ordinal))
-                {
-                    responses.Add(apiClient.DeserializeResponse<TravelDoorXResponse>());
-                    continue;
-                }
+                responses.Add(apiClient.GetResponse());
             }
         }
 

@@ -15,6 +15,8 @@
         {
         }
 
+        // public bool IsResponseHasSend { get; set; }
+
         /// <summary>
         /// Converts the response to an EngineHub object.
         /// </summary>

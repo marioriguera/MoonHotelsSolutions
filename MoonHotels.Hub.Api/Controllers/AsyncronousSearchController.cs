@@ -5,6 +5,7 @@ using MoonHotels.Hub.Api.Config;
 using MoonHotels.Hub.Api.Hub;
 using MoonHotels.Hub.Api.Models.Request;
 using MoonHotels.Hub.Api.Models.Response;
+using MoonHotels.Hub.Services.Contracts;
 
 namespace MoonHotels.Hub.Api.Controllers
 {
@@ -16,18 +17,21 @@ namespace MoonHotels.Hub.Api.Controllers
     public class AsyncronousSearchController : ControllerBase
     {
         private readonly IHubContext<MoonHotelsHub> _hubContext;
+        private readonly ISearchAsyncronous _searchAsyncronous;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AsyncronousSearchController"/> class.
         /// </summary>
-        /// <param name="hubContext">The hub context for MoonHotels communication.</param>
-        public AsyncronousSearchController(IHubContext<MoonHotelsHub> hubContext)
+        /// <param name="hubContext">The hub context.</param>
+        /// <param name="searchAsyncronous">The asynchronous search service.</param>
+        public AsyncronousSearchController(IHubContext<MoonHotelsHub> hubContext, ISearchAsyncronous searchAsyncronous)
         {
             _hubContext = hubContext;
+            _searchAsyncronous = searchAsyncronous;
         }
 
         /// <summary>
-        /// Starts a search process using the engine hub based on the provided search request.
+        /// Starts an asyncronous search process using the engine hub based on the provided search request.
         /// </summary>
         /// <param name="request">The search request containing parameters for the search.</param>
         /// <returns>An asynchronous task representing the HTTP action result with a message indicating the search has started.</returns>
@@ -64,7 +68,7 @@ namespace MoonHotels.Hub.Api.Controllers
         {
             try
             {
-                await HubComunicationStepsAsync(request);
+                await _searchAsyncronous.SearchAsync(request, StartSearch, SendHub, FinishSearch, ApiConfigurationService.Current.Logger);
                 return Ok($"The search {request.GetHashCode()} has started.");
             }
             catch (Exception ex)
@@ -74,23 +78,32 @@ namespace MoonHotels.Hub.Api.Controllers
             }
         }
 
-        private async Task HubComunicationStepsAsync(EngineHubSearchRequest request)
+        /// <summary>
+        /// Sends a signal to start the search with the specified search hash code.
+        /// </summary>
+        /// <param name="searchHashCode">The hash code of the search.</param>
+        private async void StartSearch(int searchHashCode)
         {
-            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", $"Atendiendo la request {request.GetHashCode()}.");
+            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", $"Start {searchHashCode}.");
+        }
 
-            RateResponse rate = new(1, true, 1);
+        /// <summary>
+        /// Sends a signal to finish the search with the specified search hash code.
+        /// </summary>
+        /// <param name="searchHashCode">The hash code of the search.</param>
+        private async void FinishSearch(int searchHashCode)
+        {
+            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", $"End {searchHashCode}.");
+        }
 
-            List<RateResponse> rates = new();
-            rates.Add(rate);
-
-            RoomResponse room = new(1, rates);
-            List<RoomResponse> rooms = new();
-            rooms.Add(room);
-
-            EngineHubSearchResponse response = new(rooms);
-
-            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", response);
-            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", $"Fin de la request {request.GetHashCode()}.");
+        /// <summary>
+        /// Sends the engine hub information to the clients.
+        /// </summary>
+        /// <param name="hub">The engine hub containing search information.</param>
+        /// <param name="searchHashCode">The hash code of the search.</param>
+        private async void SendHub(IEngineHub hub, int searchHashCode)
+        {
+            await _hubContext.Clients.All.SendAsync("MoonHotelHubSearchResponse", new HubResponse(searchHashCode, hub));
         }
     }
 }

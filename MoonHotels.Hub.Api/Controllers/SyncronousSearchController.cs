@@ -28,7 +28,7 @@ namespace MoonHotels.Hub.Api.Controllers
         }
 
         /// <summary>
-        /// Starts a search process using the engine hub based on the provided search request.
+        /// Starts a syncronous search process using the engine hub based on the provided search request.
         /// </summary>
         /// <param name="request">The search request containing parameters for the search.</param>
         /// <returns>An asynchronous task representing the HTTP action result with a message indicating the search has started.</returns>

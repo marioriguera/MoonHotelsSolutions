@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoonHotels.Hub.Services.Contracts
+﻿namespace MoonHotels.Hub.Services.Contracts
 {
     /// <summary>
     /// Represents an interface for asynchronous search operations.
@@ -12,10 +6,15 @@ namespace MoonHotels.Hub.Services.Contracts
     public interface ISearchAsyncronous
     {
         /// <summary>
-        /// Asynchronously searches for engine hubs based on the provided search model.
+        /// Asynchronously searches for rooms based on the provided search criteria.
         /// </summary>
-        /// <param name="search">The search model containing the criteria for the search.</param>
-        /// <returns>A task that represents the asynchronous operation. The task result contains a collection of engine hubs.</returns>
-        Task<ICollection<IEngineHub>> SearchAsync(ISearchRoomModel search);
+        /// <param name="search">The search criteria.</param>
+        /// <param name="callbackStartSearch">Callback action invoked when the search begins.</param>
+        /// <param name="callbackMessages">Callback action invoked when messages are received during the search.</param>
+        /// <param name="callbackFinishSearch">Callback action invoked when the search finishes.</param>
+        /// <param name="logger">Logger for logging messages.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
+        Task SearchAsync(ISearchRoomModel search, Action<int> callbackStartSearch,
+                            Action<IEngineHub, int> callbackMessages, Action<int> callbackFinishSearch, NLog.ILogger logger);
     }
 }

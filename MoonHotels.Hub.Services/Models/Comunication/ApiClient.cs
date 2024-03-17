@@ -1,4 +1,8 @@
 ﻿using System.Text;
+using MoonHotels.Hub.Services.Models.Base;
+using MoonHotels.Hub.Services.Models.Suppliers.HotelLegs;
+using MoonHotels.Hub.Services.Models.Suppliers.Spedia;
+using MoonHotels.Hub.Services.Models.Suppliers.TravelDoorX;
 using Newtonsoft.Json;
 
 namespace MoonHotels.Hub.Services.Models.Comunication
@@ -91,6 +95,30 @@ namespace MoonHotels.Hub.Services.Models.Comunication
         public void Dispose()
         {
             _httpClient?.Dispose();
+        }
+
+        /// <summary>
+        /// Retrieves the response based on the API URL.
+        /// </summary>
+        /// <returns>The response object.</returns>
+        internal ResponseBase GetResponse()
+        {
+            if (ApiUrl.Equals(new HotelLegsResponse(-1).Url, StringComparison.Ordinal))
+            {
+                return DeserializeResponse<HotelLegsResponse>();
+            }
+
+            if (ApiUrl.Equals(new SpediaResponse(-1).Url, StringComparison.Ordinal))
+            {
+                return DeserializeResponse<SpediaResponse>();
+            }
+
+            if (ApiUrl.Equals(new TravelDoorXResponse(-1).Url, StringComparison.Ordinal))
+            {
+                return DeserializeResponse<TravelDoorXResponse>();
+            }
+
+            throw new Exception($"Type of response not found.");
         }
     }
 }
